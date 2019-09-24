@@ -1,41 +1,23 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
+    <div id="app">
+      <Header></Header>
+      <AppBody></AppBody>
     </div>
-    <router-view @authenticated="setAuthenticated" />
-  </div>
-</template>
+  </template>
 
-<script>
-import Form from "./components/Form.vue";
+  <script>
+  import Header from "components/Frame/Header.vue";
+  import AppBody from "components/Frame/Body.vue";
 
-export default {
-  name: "app",
-  data() {
-    return {
-      authenticated: false,
-      mockAccount: {
-        email: "lealyneulin@gmail.com",
-        password: "123456"
-      }
-    };
-  },
-  mounted() {
-    if (!this.authenticated) {
-      this.$router.replace({ name: "login" });
+
+  export default {
+    name: "app",
+    components: {
+      Header,
+      AppBody
     }
-  },
-  methods: {
-    setAuthenticated(status) {
-      this.authenticated = status;
-    },
-    logout() {
-      this.authenticated = false;
-    }
-  }
-};
-</script>
+  };
+  </script>
 
 <style>
 #app {
@@ -44,6 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
+
